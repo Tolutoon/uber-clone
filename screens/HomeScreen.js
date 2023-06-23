@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { setDestination, setOrigin } from "../slice/navSlice";
 
 
-const GOOGLE_MAP_APIKEY = 'AIzaSyAwGiFqtvsk03aTOkJ0EGqymctLSPZrb7E';
+export const GOOGLE_MAP_APIKEY = 'AIzaSyAwGiFqtvsk03aTOkJ0EGqymctLSPZrb7E';
 
 const HomeScreen = () => {
 const dispatch = useDispatch();

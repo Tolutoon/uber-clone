@@ -12,7 +12,6 @@ import { GOOGLE_MAP_APIKEY } from "../screens/HomeScreen";
 import { useDispatch } from "react-redux";
 import { setDestination } from "../slice/navSlice";
 import { useNavigation } from "@react-navigation/native";
-import RideOptionsCard from "./RideOptionsCard";
 import NavFavourites from "./NavFavourites";
 import { Icon } from "@rneui/themed";
 

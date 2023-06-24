@@ -8,7 +8,6 @@ import {
 import tw from "tailwind-react-native-classnames";
 import React from "react";
 import Map from "../components/Map";
-import MapView from "react-native-maps";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import NavigateCard from "../components/NavigateCard";
 import RideOptionsCard from "../components/RideOptionsCard";
@@ -16,11 +15,6 @@ import RideOptionsCard from "../components/RideOptionsCard";
 const MapScreen = () => {
   const Stack = createNativeStackNavigator();
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 90}
-      style={styles.bg}
-    >
       <View>
         <View style={tw`h-1/2`}>
           <Map />
@@ -44,7 +38,6 @@ const MapScreen = () => {
           </Stack.Navigator>
         </View>
       </View>
-    </KeyboardAvoidingView>
   );
 };
 

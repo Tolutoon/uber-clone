@@ -21,7 +21,7 @@ const data = [
     id: "34",
     icon: "briefcase",
     location: "Work",
-    destination: "Work Station, Marylan, Lagos",
+    destination: "Work Station, Maryland, Lagos",
   },
 ];
 

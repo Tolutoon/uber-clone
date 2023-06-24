@@ -4,7 +4,7 @@ import React from 'react'
 const EatScreen = () => {
   return (
     <SafeAreaView>
-      <Text>EatScreen</Text>
+      <Text>Eat Screen Build in Progress :)</Text>
     </SafeAreaView>
   )
 }

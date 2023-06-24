@@ -1,18 +1,30 @@
 import { StyleSheet, Text, View } from "react-native";
 import MapView from "react-native-maps";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Marker } from "react-native-maps";
 import tw from "tailwind-react-native-classnames";
 import { useSelector } from "react-redux";
-import { selectOrigin } from "../slice/navSlice";
+import { selectDestination, selectOrigin } from "../slice/navSlice";
+import MapViewDirections from "react-native-maps-directions";
+import { GOOGLE_MAP_APIKEY } from "../screens/HomeScreen";
 
 const Map = () => {
-const origin = useSelector(selectOrigin)
+const origin = useSelector(selectOrigin);
+const destination = useSelector(selectDestination);
+const mapRef = useRef(null);
+
+useEffect(() => {
+  if (!origin || !destination) return;
+
+  //Zoom & Fit Markers to Screen
+  mapRef.current.fitToSuppliedMarkers(['origin', 'destination'], { edgePadding: {top: 50, right: 50, left: 50},})
+}, [origin, destination])
 
   return (
     <MapView
     style={tw`flex-1`}
     mapType="mutedStandard"
+    ref={mapRef}
       initialRegion={{
         latitude: origin.location.lat,
         longitude: origin.location.lng,
@@ -20,6 +32,16 @@ const origin = useSelector(selectOrigin)
         longitudeDelta: 0.005,
       }}
     >
+      {origin && destination && (
+        <MapViewDirections 
+        origin={origin.description}
+        destination={destination.description}
+        apikey={GOOGLE_MAP_APIKEY}
+        strokeWidth={3}
+        strokeColor="black"
+        />
+      )}
+
       {origin?.location && (
         <Marker 
         coordinate={{
@@ -29,6 +51,17 @@ const origin = useSelector(selectOrigin)
         title="Origin"
         description={origin.description}
         identifier="origin"
+        />
+      )}
+      {destination?.location && (
+        <Marker 
+        coordinate={{
+          latitude: destination.location.lat,
+          longitude: destination.location.lng,
+        }}
+        title="Destination"
+        description={destination.description}
+        identifier="destination"
         />
       )}
       </MapView>

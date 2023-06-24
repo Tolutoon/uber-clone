@@ -5,12 +5,12 @@ import NavOptions from "../components/NavOptions";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { useDispatch } from "react-redux";
 import { setDestination, setOrigin } from "../slice/navSlice";
+import NavFavourites from "../components/NavFavourites";
 
-
-export const GOOGLE_MAP_APIKEY = 'AIzaSyAwGiFqtvsk03aTOkJ0EGqymctLSPZrb7E';
+export const GOOGLE_MAP_APIKEY = "AIzaSyAwGiFqtvsk03aTOkJ0EGqymctLSPZrb7E";
 
 const HomeScreen = () => {
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
@@ -26,39 +26,42 @@ const dispatch = useDispatch();
           }}
         />
 
-<GooglePlacesAutocomplete
-    nearbyPlacesAPI="GooglePlaceSearch"
-    fetchDetails={true}
-    returnKeyType={'search'}
-    debounce={400}
-    placeholder="Where From?"
-    styles={{
-        container: {
-            flex: 0,
-        },
-        textInput: {
-            fontSize: 18,
-        }
-    }}
-    onPress={(data, details = null)=>{
-        console.log(data)
-        console.log(details)
-        dispatch(setOrigin({
-            location: details.geometry.location,
-            description: data.description
-        }))
+        <GooglePlacesAutocomplete
+          nearbyPlacesAPI="GooglePlaceSearch"
+          fetchDetails={true}
+          returnKeyType={"search"}
+          debounce={400}
+          placeholder="Where From?"
+          styles={{
+            container: {
+              flex: 0,
+            },
+            textInput: {
+              fontSize: 18,
+            },
+          }}
+          onPress={(data, details = null) => {
+            console.log(data);
+            console.log(details);
+            dispatch(
+              setOrigin({
+                location: details.geometry.location,
+                description: data.description,
+              })
+            );
 
-        dispatch(setDestination(null))
-    }}
-    enablePoweredByContainer={false}
-    minLength={2}
-    query={{
-        key: GOOGLE_MAP_APIKEY,
-        language: 'en',
-    }}
-    />
+            dispatch(setDestination(null));
+          }}
+          enablePoweredByContainer={false}
+          minLength={2}
+          query={{
+            key: GOOGLE_MAP_APIKEY,
+            language: "en",
+          }}
+        />
 
-        <NavOptions/>
+        <NavOptions />
+        <NavFavourites />
       </View>
     </SafeAreaView>
   );

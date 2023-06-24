@@ -20,6 +20,23 @@ useEffect(() => {
   mapRef.current.fitToSuppliedMarkers(['origin', 'destination'], { edgePadding: {top: 50, right: 50, left: 50},})
 }, [origin, destination])
 
+{/*useEffect(()=> {
+  if (!origin || !destination) return;
+  const getTravelTime = async() => {
+    fetch (`https://maps.googleapis.com/maps/api/distancematrix/json
+    ?units=imperial
+    &origins=${origin.description}
+    &destinations=${destination.description}
+    &key=${GOOGLE_MAP_APIKEY}
+  `).then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+  });
+  };
+
+  getTravelTime();
+}, [origin, destination, GOOGLE_MAP_APIKEY])*/}
+
   return (
     <MapView
     style={tw`flex-1`}

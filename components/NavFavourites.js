@@ -15,7 +15,7 @@ const data = [
     id: "12",
     icon: "home",
     location: "Home",
-    destination: "47A, Iwaya Road, Yaba, Lagos",
+    destination: 'Akoka, Yaba, Lagos',
   },
   {
     id: "34",
